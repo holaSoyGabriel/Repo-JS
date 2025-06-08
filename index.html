@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulador Walmart</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <!-- Pantalla de Bienvenida -->
+    <section id="pantallaBienvenida" class="pantalla activa">
+      <div class="contenedor">
+        <h1>Bienvenido a Walmert</h1>
+        <p>Esto es un simulador de compras</p>
+        <button id="btnComenzar">Comenzar</button>
+      </div>
+    </section>
+
+    <!-- Pantalla de Pregunta -->
+    <section id="pantallaRegistroPregunta" class="pantalla">
+      <div class="contenedor">
+        <h2>¿Ya estás registrado?</h2>
+        <button id="btnSiIngresar">Sí, ingresar</button>
+        <button id="btnNoRegistrarme">No, registrarme</button>
+      </div>
+    </section>
+
+    <!-- Pantalla de Login -->
+    <section id="pantallaLogin" class="pantalla">
+      <div class="contenedor">
+        <h2>Iniciar Sesión</h2>
+        <form id="formLogin">
+          <input type="text" id="loginNombre" placeholder="Nombre" required />
+          <input type="text" id="loginApellido" placeholder="Apellido"
+            required />
+          <input type="password" id="loginContrasena" placeholder="Contraseña"
+            required />
+          <button type="submit">Ingresar</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Pantalla de Registro -->
+    <section id="pantallaRegistro" class="pantalla">
+      <div class="contenedor">
+        <h2>Registro de Usuario</h2>
+        <form id="formRegistro">
+          <input type="text" id="nombre" placeholder="Nombre" required />
+          <input type="text" id="apellido" placeholder="Apellido" required />
+          <input type="number" id="edad" placeholder="Edad" required />
+          <input type="text" id="dni" placeholder="DNI" required />
+          <input type="text" id="tarjeta" placeholder="Tarjeta" required />
+          <input type="password" id="contrasena" placeholder="Contraseña"
+            required />
+          <input type="password" id="confirmarContrasena"
+            placeholder="Confirmar Contraseña" required />
+
+          <label>
+            <input type="checkbox" id="checkboxSimulador" />
+            Estoy consciente de que este es un simulador de compras falso.
+          </label>
+          <button id="btnRegistrarme" type="submit"
+            disabled>Registrarme</button>
+        </form>
+      </div>
+    </section>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
