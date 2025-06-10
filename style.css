@@ -1,106 +1,42 @@
 /**
- * styles.css
+ * Estilo retro arcade para Arcadia
  *
  * @format
  */
 
-body {
+/* ====== RESET GENERAL ====== */
+* {
 	margin: 0;
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-	background-color: #2c2c2e;
-	height: 100vh;
-	overflow: hidden;
-	position: relative;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* ====== ESTILOS GENERALES ====== */
+body {
+	font-family: "VT323", monospace;
+	font-size: 1.6rem;
+	background-color: #0d0d14;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	animation: fadeInBody 1s ease-in-out;
+	min-height: 100vh;
+	padding: 40px 20px;
+	text-align: center;
 }
 
-@keyframes fadeInBody {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
+/* Contenedor base */
+.contenedor {
+	width: 90%;
+	border-radius: 15px;
+	background: #161628;
+	animation: fadeIn 1s ease-out forwards;
 }
 
-.pantalla {
-	display: none;
-	width: 100%;
-	height: 100vh;
-	justify-content: center;
-	align-items: center;
-	position: absolute;
-	top: 0;
-	left: 0;
-	animation: fadeIn 0.5s ease-in-out;
-}
-
+/* Animación de entrada */
 @keyframes fadeIn {
 	from {
 		opacity: 0;
-		transform: scale(0.98);
-	}
-	to {
-		opacity: 1;
-		transform: scale(1);
-	}
-}
-
-.pantalla.activa {
-	display: flex;
-}
-
-.contenedor {
-	background: linear-gradient(145deg, #3d3e40, #4c4d4f);
-	padding: 60px 40px;
-	border-radius: 20px;
-	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6),
-		inset 0 1px 0 rgba(255, 255, 255, 0.05);
-	text-align: center;
-	width: 90%;
-	max-width: 600px;
-	margin: auto;
-	transition: all 0.3s ease;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%) scale(0.98);
-	border: 1px solid rgba(255, 255, 255, 0.2);
-	animation: slideIn 0.8s ease forwards;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-}
-
-@keyframes slideIn {
-	0% {
-		transform: translate(-50%, -60%) scale(0.95);
-		opacity: 0;
-	}
-	100% {
-		transform: translate(-50%, -50%) scale(1);
-		opacity: 1;
-	}
-}
-
-h1,
-h2,
-h3 {
-	color: #ffee00;
-	font-size: 48px;
-	margin-bottom: 20px;
-	text-shadow: 0 0 8px rgba(255, 255, 0, 0.8), 0 0 15px rgba(255, 255, 0, 0.5);
-	animation: fadeInText 1s ease-in-out;
-}
-
-@keyframes fadeInText {
-	from {
-		opacity: 0;
-		transform: translateY(-10px);
+		transform: translateY(-20px);
 	}
 	to {
 		opacity: 1;
@@ -108,98 +44,327 @@ h3 {
 	}
 }
 
-p {
-	color: #f0f0f0;
-	margin-bottom: 30px;
-	font-size: 1.1em;
-	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+/* Títulos con efecto neón */
+.neon-text {
+	font-size: 4rem;
+	color: #8800ff;
+	text-shadow: 0 0 20px rgba(136, 0, 255, 1), 0 0 30px rgba(136, 0, 255, 0.8);
+	animation: glow 1.5s infinite alternate;
 }
 
-button {
-	background: linear-gradient(145deg, #222324, #2d2e30);
-	color: #f8f800;
-	border: none;
-	padding: 14px 25px;
-	margin-top: 15px;
-	border-radius: 10px;
-	font-size: 1em;
+/* Animación de brillo */
+@keyframes glow {
+	from {
+		text-shadow: 0 0 15px rgba(136, 0, 255, 0.8);
+	}
+	to {
+		text-shadow: 0 0 25px rgba(136, 0, 255, 1);
+	}
+}
+
+/* Texto con mejor contraste */
+
+/* ====== ESTILOS EXCLUSIVOS PARA BIENVENIDA ====== */
+.bienvenida .contenedor {
+	max-width: 900px;
+	padding: 60px;
+	box-shadow: 0 0 30px rgba(136, 0, 255, 0.7);
+}
+
+.bienvenida .contenedor h1 {
+	font-size: 100px;
+	margin: 20px;
+}
+
+.bienvenida .contenedor p {
+	font-size: 2rem;
+	color: #d1d1e0;
+	font-weight: 600;
+	margin: 10px;
+}
+
+/* Botón estilo arcade con luminiscencia neón */
+.bienvenida #btnComenzar {
+	margin-top: 30px;
+	padding: 8px 18px;
+	font-size: 1.3rem;
+	background: #161628;
+	color: #8800ff;
+	border: 4px solid #5b00a3;
+	border-radius: 0px;
 	cursor: pointer;
-	transition: background-color 0.2s ease, transform 0.2s ease,
-		box-shadow 0.2s ease;
-}
-
-button:hover {
-	background: #3b3c3d;
-	transform: scale(1.05);
-	box-shadow: 0 4px 15px rgba(255, 255, 0, 0.3);
-}
-
-form {
-	display: flex;
-	flex-direction: column;
-	gap: 18px;
-	align-items: center;
-	justify-content: center;
-	padding-top: 25px;
-	background: rgba(255, 255, 255, 0.05);
-	border-radius: 15px;
-	padding: 30px 20px;
-	width: 100%;
-	max-width: 500px;
-	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
-	animation: fadeInForm 1s ease-in-out;
-}
-
-@keyframes fadeInForm {
-	from {
-		opacity: 0;
-		transform: translateY(20px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-input[type="text"],
-input[type="number"],
-input[type="password"] {
-	padding: 14px 16px;
-	font-size: 1em;
-	border: 1px solid #666;
-	border-radius: 8px;
-	outline: none;
-	width: 100%;
-	max-width: 400px;
-	background-color: #e8e8e8;
-	color: #222;
+	box-shadow: inset -3px -3px 0px #110022, inset 3px 3px 0px #5b00a3;
 	transition: all 0.3s ease;
-	box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.15);
+	text-transform: uppercase;
+	font-weight: bold;
+	font-family: "Press Start 2P", cursive;
+	text-shadow: 0 0 10px rgba(136, 0, 255, 0.8), 0 0 20px rgba(136, 0, 255, 0.6);
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus,
-input[type="password"]:focus {
-	border-color: #ffee00;
-	box-shadow: 0 0 10px rgba(255, 255, 0, 0.7);
-	background-color: #fffdd0;
+/* Efecto hover */
+.bienvenida #btnComenzar:hover {
+	background: #1d1d3b;
+	box-shadow: inset -3px -3px 0px #110022, inset 3px 3px 0px #8800ff;
+	transform: scale(1.05);
+	text-shadow: 0 0 15px rgba(136, 0, 255, 1), 0 0 25px rgba(136, 0, 255, 0.8);
 }
 
-label {
+/* Efecto al presionar */
+.bienvenida #btnComenzar:active {
+	background: #110022;
+	box-shadow: inset -2px -2px 0px #000, inset 2px 2px 0px #5b00a3;
+	transform: scale(0.97);
+	text-shadow: 0 0 8px rgba(136, 0, 255, 0.6), 0 0 12px rgba(136, 0, 255, 0.4);
+}
+
+/* ====== ESTILOS EXCLUSIVOS PARA REGISTRO-PREGUNTA ====== */
+.registro-pregunta .contenedor {
+	max-width: 600px;
+	padding: 40px;
+	box-shadow: 0 0 20px rgba(136, 0, 255, 0.6);
+}
+
+/* Botones exclusivos para registro-pregunta */
+.btn-neon {
+	display: inline-block;
+	width: 60%;
+	padding: 8px 14px;
+	font-size: 1.1rem;
+	background: #161628;
+	color: #8800ff;
+	border: 3px solid #5b00a3;
+	border-radius: 0px;
+	cursor: pointer;
+	box-shadow: inset -2px -2px 0px #110022, inset 2px 2px 0px #5b00a3;
+	transition: all 0.3s ease;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-family: "Press Start 2P", cursive;
+	text-shadow: 0 0 8px rgba(136, 0, 255, 0.8), 0 0 16px rgba(136, 0, 255, 0.6);
+	text-align: center;
+	text-decoration: none;
+	margin-top: 10px;
+}
+
+/* ====== ESTILOS EXCLUSIVOS PARA LOGIN ====== */
+.login .contenedor {
+	max-width: 500px;
+	padding: 40px;
+	box-shadow: 0 0 20px rgba(136, 0, 255, 0.6);
+}
+
+/* Campos de entrada con efecto neón */
+#form-login input {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+	background: #161628;
+	color: #cfcfe0;
+	border: 2px solid #8800ff;
+	border-radius: 5px;
+	font-size: 1.2rem;
+	font-family: "VT323", monospace;
+	text-align: center;
+	box-shadow: 0 0 10px rgba(136, 0, 255, 0.5);
+}
+
+/* Efecto al enfocar */
+#form-login input:focus {
+	outline: none;
+	border-color: #bb00ff;
+	box-shadow: 0 0 15px rgba(187, 0, 255, 0.8);
+}
+
+/** ====== ESTILOS EXCLUSIVOS PARA REGISTRO ====== */
+.registro .contenedor {
+	max-width: 500px;
+	padding: 40px;
+	box-shadow: 0 0 20px rgba(136, 0, 255, 0.6);
+}
+
+/** Campos de entrada con efecto neón */
+
+#form-registro input {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+	background: #161628;
+	color: #cfcfe0;
+	border: 2px solid #8800ff;
+	border-radius: 5px;
+	font-size: 1.2rem;
+	font-family: "VT323", monospace;
+	text-align: center;
+	box-shadow: 0 0 10px rgba(136, 0, 255, 0.5);
+}
+
+/** Efecto al enfocar */
+#form-registro input:focus {
+	outline: none;
+	border-color: #bb00ff;
+	box-shadow: 0 0 15px rgba(187, 0, 255, 0.8);
+}
+
+/** Estilos para el consentimiento */
+.consentimiento {
 	display: flex;
 	align-items: center;
-	gap: 6px;
-	font-size: 0.78em;
-	margin-top: 5px;
-	color: #f5f5f5;
-	width: 100%;
-	max-width: 400px;
-	line-height: 1.4em;
-	transition: color 0.3s ease;
+	justify-content: left; /* Alineado a la izquierda */
+	margin-top: 10px;
+	font-size: 1rem; /* Texto más pequeño */
+	color: #cfcfe0;
+	border: none; /* Elimina cualquier borde */
+	background: none; /* Asegura que no haya fondo */
+	padding: 0; /* Elimina cualquier espacio adicional */
 }
 
-label input[type="checkbox"] {
-	margin-right: 4px;
-	transform: scale(1.1);
-	accent-color: #ffee00;
+/** Checkbox sin contenedor */
+.consentimiento input[type="checkbox"] {
+	/* Tamaño reducido */
+	height: 14px;
+	margin-right: 6px;
+	cursor: pointer;
+	border: none; /* Elimina cualquier borde */
+	box-shadow: none; /* Elimina el efecto iluminado */
+	background: none; /* Asegura que no tenga fondo */
+}
+
+/** Botón estilo arcade con luminiscencia neón */
+.btn-neon {
+	display: inline-block;
+	width: 80%;
+	padding: 10px 18px;
+	background: #161628;
+	color: #8800ff;
+	border: 4px solid #5b00a3;
+	border-radius: 0px;
+	cursor: pointer;
+	box-shadow: inset -3px -3px 0px #110022, inset 3px 3px 0px #5b00a3;
+	transition: all 0.3s ease;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-family: "Press Start 2P", cursive;
+	text-shadow: 0 0 10px rgba(136, 0, 255, 0.8), 0 0 20px rgba(136, 0, 255, 0.6);
+	text-align: center;
+	text-decoration: none;
+	margin-top: 15px;
+}
+
+/** Efecto hover */
+.btn-neon:hover {
+	background: #1d1d3b;
+	box-shadow: inset -3px -3px 0px #110022, inset 3px 3px 0px #8800ff;
+	transform: scale(1.05);
+	text-shadow: 0 0 15px rgba(136, 0, 255, 1), 0 0 25px rgba(136, 0, 255, 0.8);
+}
+
+/** Efecto al presionar */
+.btn-neon:active {
+	background: #110022;
+	box-shadow: inset -2px -2px 0px #000, inset 2px 2px 0px #5b00a3;
+	transform: scale(0.97);
+	text-shadow: 0 0 8px rgba(136, 0, 255, 0.6), 0 0 12px rgba(136, 0, 255, 0.4);
+}
+
+/* Contenedor del spinner */
+.spinner-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+}
+
+.spinner-container.active {
+	display: flex;
+	opacity: 1;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	z-index: 9999;
+}
+
+/* Spinner estilo arcade */
+.loader {
+	width: 80px;
+	height: 70px;
+	border: 5px solid #8800ff; /* Morado neón */
+	padding: 0 8px;
+	box-sizing: border-box;
+	background: linear-gradient(#8800ff 0 0) 0 0/8px 20px,
+		linear-gradient(#8800ff 0 0) 100% 0/8px 20px,
+		radial-gradient(farthest-side, #8800ff 90%, #0000) 0 5px/8px 8px content-box,
+		#000;
+	background-repeat: no-repeat;
+	animation: arcade-spin 2s infinite linear;
+}
+
+/* Animación arcade */
+@keyframes arcade-spin {
+	25% {
+		background-position: 0 0, 100% 100%, 100% calc(100% - 5px);
+	}
+	50% {
+		background-position: 0 100%, 100% 100%, 0 calc(100% - 5px);
+	}
+	75% {
+		background-position: 0 100%, 100% 0, 100% 5px;
+	}
+}
+
+/* Mostrar el spinner */
+.spinner-container.active {
+	visibility: visible;
+	opacity: 1;
+}
+
+/* Animación arcade */
+@keyframes arcade-spin {
+	25% {
+		background-position: 0 0, 100% 100%, 100% calc(100% - 5px);
+	}
+	50% {
+		background-position: 0 100%, 100% 100%, 0 calc(100% - 5px);
+	}
+	75% {
+		background-position: 0 100%, 100% 0, 100% 5px;
+	}
+}
+
+/* Mostrar el spinner */
+.spinner-container.active {
+	visibility: visible;
+	opacity: 1;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+	.contenedor {
+		max-width: 95%;
+		padding: 50px;
+	}
+
+	.neon-text {
+		font-size: 3.5rem;
+	}
+
+	.btn-neon {
+		font-size: 1rem;
+		padding: 6px 12px;
+		width: 70%;
+	}
+
+	#form-login input {
+		font-size: 1rem;
+		padding: 8px;
+	}
 }

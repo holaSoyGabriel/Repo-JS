@@ -1,0 +1,34 @@
+{
+  "productos": [
+    {
+      "nombre": "Cartucho Super Mario Bros (NES)",
+      "descripcion": "Edición original del clásico Super Mario Bros para la Nintendo Entertainment System.",
+      "precio": 35.99,
+      "imagen": "super-mario-nes.jpg"
+    },
+    {
+      "nombre": "Consola Sega Genesis",
+      "descripcion": "Consola Sega Genesis original con cables y mando incluidos.",
+      "precio": 89.99,
+      "imagen": "sega-genesis.jpg"
+    },
+    {
+      "nombre": "Mini Arcade Pac-Man",
+      "descripcion": "Máquina arcade en miniatura con el clásico Pac-Man.",
+      "precio": 49.99,
+      "imagen": "pacman-arcade.jpg"
+    },
+    {
+      "nombre": "Figura de Link (Zelda)",
+      "descripcion": "Figura coleccionable de Link basada en The Legend of Zelda: Ocarina of Time.",
+      "precio": 24.99,
+      "imagen": "link-figure.jpg"
+    },
+    {
+      "nombre": "Vinilo Soundtrack Castlevania",
+      "descripcion": "Banda sonora original de Castlevania en formato vinilo.",
+      "precio": 39.99,
+      "imagen": "castlevania-vinyl.jpg"
+    }
+  ]
+}
