@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arcadia - Registrarse</title>
     <link rel="stylesheet" href="../style.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
       rel="stylesheet">
     <!-- SweetAlert -->
@@ -22,14 +25,29 @@
             required>
           <input type="text" id="registro-apellidos"
             placeholder="Apellidos completos" required>
+          <input type="text" id="registro-usuario"
+            placeholder="Nombre de usuario (minúsculas, números, . _ -)"
+            required>
+          <p id="error-usuario"></p> <!-- Mensaje de error dinámico -->
+          <input type="email" id="registro-email"
+            placeholder="Correo electrónico" required>
           <input type="number" id="registro-edad" placeholder="Edad" required>
           <input type="text" id="registro-dni" placeholder="DNI" required>
           <input type="text" id="registro-tarjeta"
             placeholder="Número de tarjeta" required>
-          <input type="password" id="registro-password" placeholder="Contraseña"
-            required>
-          <input type="password" id="registro-confirmar-password"
-            placeholder="Confirmar contraseña" required>
+          <div class="password-container">
+            <input type="password" id="registro-password"
+              placeholder="Contraseña" required>
+            <i class="bx bx-hide toggle-password"
+              data-target="registro-password"></i>
+          </div>
+
+          <div class="password-container">
+            <input type="password" id="registro-confirmar-password"
+              placeholder="Confirmar contraseña" required>
+            <i class="bx bx-hide toggle-password"
+              data-target="registro-confirmar-password"></i>
+          </div>
 
           <!-- Consentimiento sin efecto iluminado -->
           <div class="consentimiento">

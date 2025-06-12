@@ -7,34 +7,35 @@
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
       rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet">
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Toastify -->
-    <script type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </head>
   <body class="login">
     <section class="pantalla">
       <div class="contenedor">
         <h2 class="neon-text">Iniciar Sesión</h2>
         <form id="form-login">
-          <input type="text" id="login-nombre" placeholder="Nombre completo"
+          <input type="text" id="login-usuario" placeholder="Nombre de usuario"
             required>
-          <input type="text" id="login-apellidos"
-            placeholder="Apellidos completos" required>
-          <input type="password" id="login-password" placeholder="Contraseña"
+          <input type="email" id="login-email" placeholder="Correo electrónico"
             required>
+
+          <div class="password-container">
+            <input type="password" id="login-password" placeholder="Contraseña"
+              required>
+            <i class="bx bx-hide toggle-password"
+              data-target="login-password"></i>
+          </div>
+
           <button type="submit" class="btn-neon" id="btn-ingresar"
             disabled>Ingresar</button>
-
         </form>
-        <a href="registro-pregunta.html" class="btn-neon">Volver</a>
+        <a href="registro.html" class="btn-neon">Registrarse</a>
       </div>
     </section>
-    <script src="../js/index.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="../js/auth.js"></script>
-
   </body>
 </html>

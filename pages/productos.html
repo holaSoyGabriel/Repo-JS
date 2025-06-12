@@ -1,26 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcadia - Catálogo Retro</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
-      rel="stylesheet">
-  </head>
-  <body>
-    <section class="pantalla">
-      <div class="contenedor">
-        <h2 class="neon-text">Catálogo de Arcadia</h2>
-        <div id="productos">
-          <!-- Productos generados dinámicamente -->
-        </div>
-        <a href="index.html" class="btn">Volver al inicio</a>
-      </div>
-    </section>
-    <script src="../js/index.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/catalogo.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Arcadia Store</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body id="productos-body">
 
-  </body>
+        <!-- Encabezado -->
+        <header class="productos-header">
+            <h1>Arcadia Store</h1>
+            <input type="text" id="buscador" class="buscador"
+                placeholder="Buscar productos...">
+        </header>
+
+        <!-- Contenedor principal -->
+        <main class="productos">
+            <div class="contenedor-principal">
+
+                <!-- Menú lateral (Categorías y filtros) -->
+                <aside class="menu-lateral">
+                    <h2>Categorías</h2>
+                    <button class="btn-neon categoria-btn"
+                        data-categoria="Todos">Todos</button>
+                    <button class="btn-neon categoria-btn"
+                        data-categoria="Consolas">Consolas</button>
+                    <button class="btn-neon categoria-btn"
+                        data-categoria="Juegos">Juegos</button>
+                    <button class="btn-neon categoria-btn"
+                        data-categoria="Accesorios">Accesorios</button>
+
+                    <h3>Filtrar por precio</h3>
+                    <select id="filtro-precio">
+                        <option value="todos">Todos</option>
+                        <option value="bajo">Menos de $50</option>
+                        <option value="medio">$50 - $100</option>
+                        <option value="alto">Más de $100</option>
+                    </select>
+                </aside>
+
+                <!-- Zona de productos -->
+                <section class="zona-productos">
+                    <div id="productos-lista" class="productos-lista">
+                        <p>Cargando productos...</p>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- Botón flotante para ver el carrito -->
+        <button id="ver-carrito" class="btn-neon">Ver carrito</button>
+
+        <!-- Contenedor flotante del carrito -->
+        <div id="carrito-flotante" class="carrito-flotante oculto">
+            <h2>Carrito de compras</h2>
+            <div id="carrito-lista"></div>
+            <p>Total: <span id="carrito-total">$0.00</span></p>
+            <button id="volver" class="btn-neon">Volver</button>
+            <button id="vaciar-carrito" class="btn-neon">Vaciar carrito</button>
+            <button id="realizar-compra" class="btn-neon">Realizar
+                compra</button>
+        </div>
+
+        <script src="../js/productos.js"></script>
+    </body>
 </html>

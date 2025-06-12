@@ -1,34 +1,172 @@
 {
-  "productos": [
-    {
-      "nombre": "Cartucho Super Mario Bros (NES)",
-      "descripcion": "Edición original del clásico Super Mario Bros para la Nintendo Entertainment System.",
-      "precio": 35.99,
-      "imagen": "super-mario-nes.jpg"
-    },
-    {
-      "nombre": "Consola Sega Genesis",
-      "descripcion": "Consola Sega Genesis original con cables y mando incluidos.",
-      "precio": 89.99,
-      "imagen": "sega-genesis.jpg"
-    },
-    {
-      "nombre": "Mini Arcade Pac-Man",
-      "descripcion": "Máquina arcade en miniatura con el clásico Pac-Man.",
-      "precio": 49.99,
-      "imagen": "pacman-arcade.jpg"
-    },
-    {
-      "nombre": "Figura de Link (Zelda)",
-      "descripcion": "Figura coleccionable de Link basada en The Legend of Zelda: Ocarina of Time.",
-      "precio": 24.99,
-      "imagen": "link-figure.jpg"
-    },
-    {
-      "nombre": "Vinilo Soundtrack Castlevania",
-      "descripcion": "Banda sonora original de Castlevania en formato vinilo.",
-      "precio": 39.99,
-      "imagen": "castlevania-vinyl.jpg"
-    }
-  ]
+	"productos": [
+		{
+			"id": 1,
+			"nombre": "Máquina Arcade Mini",
+			"descripcion": "Mini máquina arcade con pantalla y controles clásicos.",
+			"precio": 250.0,
+			"imagen": "../img/mini-maquina-arcade.jpg",
+			"categoria": "Arcade"
+		},
+		{
+			"id": 2,
+			"nombre": "Neon Keyboard",
+			"descripcion": "Teclado mecánico con luces RGB.",
+			"precio": 79.99,
+			"imagen": "../img/Neon Keyboard.jpg",
+			"categoria": "Accesorios"
+		},
+		{
+			"id": 3,
+			"nombre": "Street Fighter II",
+			"descripcion": "Clásico juego de peleas arcade.",
+			"precio": 19.99,
+			"imagen": "../img/Street Fighter II.jpg",
+			"categoria": "Juegos"
+		},
+		{
+			"id": 4,
+			"nombre": "Retro Console",
+			"descripcion": "Consola con 100 juegos clásicos.",
+			"precio": 129.99,
+			"imagen": "../img/retro consola.jpg",
+			"categoria": "Consolas"
+		},
+		{
+			"id": 5,
+			"nombre": "Cyberpunk 2077",
+			"descripcion": "Videojuego de mundo abierto futurista.",
+			"precio": 59.99,
+			"imagen": "../img/Cyberpunk.webp",
+			"categoria": "Juegos"
+		},
+		{
+			"id": 6,
+			"nombre": "Panel de Botones Arcade",
+			"descripcion": "Kit de botones para personalizar tu máquina arcade.",
+			"precio": 90.0,
+			"imagen": "../img/panel de botones arcade.jpg",
+			"categoria": "Accesorios"
+		},
+		{
+			"id": 7,
+			"nombre": "Consola Retro HDMI",
+			"descripcion": "Consola retro con salida HDMI y cientos de juegos.",
+			"precio": 200.0,
+			"imagen": "../img/consola retro hdmi.webp",
+			"categoria": "Consolas"
+		},
+		{
+			"id": 8,
+			"nombre": "Pac-Man",
+			"descripcion": "El clásico juego de laberintos y fantasmas.",
+			"precio": 14.99,
+			"imagen": "../img/Pacman.webp",
+			"categoria": "Juegos"
+		},
+		{
+			"id": 9,
+			"nombre": "Kit de Modding Arcade",
+			"descripcion": "Componentes para modificar y mejorar tu máquina arcade.",
+			"precio": 120.0,
+			"imagen": "../img/Kit moddind.webp",
+			"categoria": "Accesorios"
+		},
+		{
+			"id": 10,
+			"nombre": "Joystick Clásico",
+			"descripcion": "Joystick estilo clásico para juegos retro.",
+			"precio": 75.0,
+			"imagen": "../img/Joystick_clasico.jpg",
+			"categoria": "Accesorios"
+		},
+		{
+			"id": 11,
+			"nombre": "Monitor CRT Retro",
+			"descripcion": "Pantalla CRT para una experiencia arcade auténtica.",
+			"precio": 300.0,
+			"imagen": "../img/monitor crt retro.jpg",
+			"categoria": "Arcade"
+		},
+		{
+			"id": 12,
+			"nombre": "Fuente de Poder Arcade",
+			"descripcion": "Fuente de alimentación para máquinas arcade.",
+			"precio": 50.0,
+			"imagen": "../img/fuente de poder arcade.jpg",
+			"categoria": "Arcade"
+		},
+		{
+			"id": 13,
+			"nombre": "Donkey Kong",
+			"descripcion": "Juego clásico de plataformas arcade.",
+			"precio": 17.99,
+			"imagen": "../img/Carátula_Donkey_Kong_(NES).jpg",
+			"categoria": "Juegos"
+		},
+		{
+			"id": 14,
+			"nombre": "Sega Genesis Mini",
+			"descripcion": "Consola mini con juegos clásicos de Sega.",
+			"precio": 89.99,
+			"imagen": "../img/Sega_Genesis_Mini.jpg",
+			"categoria": "Consolas"
+		},
+		{
+			"id": 15,
+			"nombre": "Metal Slug",
+			"descripcion": "Juego de acción y disparos arcade.",
+			"precio": 22.99,
+			"imagen": "../img/Metal_Slug.webp",
+			"categoria": "Juegos"
+		},
+		{
+			"id": 16,
+			"nombre": "Nintendo Switch",
+			"descripcion": "Consola híbrida con juegos modernos y retro.",
+			"precio": 299.99,
+			"imagen": "../img/nintendo_switch.webp",
+			"categoria": "Consolas"
+		},
+		{
+			"id": 17,
+			"nombre": "Arcade Stick",
+			"descripcion": "Control clásico para juegos retro.",
+			"precio": 49.99,
+			"imagen": "../img/Arcade stick.webp",
+			"categoria": "Accesorios"
+		},
+		{
+			"id": 18,
+			"nombre": "Galaga",
+			"descripcion": "Juego clásico de naves espaciales arcade.",
+			"precio": 15.99,
+			"imagen": "../img/Galaga (Atari 7800).jpg",
+			"categoria": "Juegos"
+		},
+		{
+			"id": 19,
+			"nombre": "Pixel Mouse",
+			"descripcion": "Ratón con diseño pixelado.",
+			"precio": 39.99,
+			"imagen": "../img/Raton-Pixelado-detalle.webp",
+			"categoria": "Accesorios"
+		},
+		{
+            "id": 20,
+            "nombre": "R36S Retro Handheld",
+            "descripcion": "Consola portátil con emulación de múltiples sistemas retro.",
+            "precio": 149.99,
+            "imagen": "../img/R36S Retro handheld.jpg",
+            "categoria": "Consolas"
+        },
+        {
+            "id": 21,
+            "nombre": "PlayStation Classic",
+            "descripcion": "Mini consola con juegos clásicos de PlayStation 1.",
+            "precio": 99.99,
+            "imagen": "../img/playstation classic.jpg",
+            "categoria": "Consolas"
+        }
+	]
 }
