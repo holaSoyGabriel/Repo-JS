@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			spinnerContainer.classList.add("active");
 
 			setTimeout(() => {
-				window.location.href = `${window.location.origin}/pages/registro-pregunta.html`;
+				window.location.href = `${window.location.origin}/Repo-JS/pages/registro-pregunta.html`;
 			}, 2000);
 		});
 	}
