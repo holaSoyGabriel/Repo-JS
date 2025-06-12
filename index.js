@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			spinnerContainer.classList.add("active");
 
 			setTimeout(() => {
+				console.log("Redirigiendo a:", window.location.href);
 				window.location.href = "../pages/registro-pregunta.html";
 			}, 2000);
 		});
