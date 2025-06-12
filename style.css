@@ -64,6 +64,11 @@ body {
 /* Texto con mejor contraste */
 
 /* ====== ESTILOS EXCLUSIVOS PARA BIENVENIDA ====== */
+.pantalla{
+	display: flex;
+	justify-content: center;
+}
+
 .bienvenida .contenedor {
 	max-width: 900px;
 	padding: 60px;

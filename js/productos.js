@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 	// 🔹 Variables globales
 	let productos = [];
-	let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+	let carrito = JSON.parse(sessionStorage.getItem("carrito")) || [];
 
 	// ==========================================
 	// 🔥 CARGA DE PRODUCTOS DESDE JSON
@@ -33,10 +33,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 				throw new Error("El JSON no contiene productos.");
 
 			productos = datos.productos;
-			console.log("✅ Productos cargados correctamente:", productos);
+
 			mostrarProductos(productos);
 		} catch (error) {
-			console.error("❌ Error al cargar los productos:", error);
 			productosLista.innerHTML = `<p style="color: red;">Error al cargar productos. Verifica el JSON.</p>`;
 		}
 	}
@@ -70,8 +69,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 				agregarAlCarrito(boton.dataset.id);
 			});
 		});
-
-		console.log("✅ Productos mostrados correctamente.");
 	}
 
 	// ==========================================
@@ -129,7 +126,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	});
 
 	// ==========================================
-	// 🔥 CARRITO DE COMPRAS
+	// 🔥 CARRITO DE COMPRAS (USANDO sessionStorage)
 	// ==========================================
 	verCarritoBtn.addEventListener("click", () => {
 		carritoFlotante.classList.remove("oculto");
@@ -200,9 +197,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 	}
 
 	btnVaciarCarrito.addEventListener("click", () => {
-		carrito = []; // Vaciar el array
-		guardarCarrito(); // Guardar cambios en localStorage
-		actualizarCarrito(); // Refrescar la interfaz
+		carrito = [];
+		guardarCarrito();
+		actualizarCarrito();
 		Toastify({
 			text: "Carrito vaciado correctamente",
 			duration: 2000,
@@ -219,7 +216,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	}
 
 	function guardarCarrito() {
-		localStorage.setItem("carrito", JSON.stringify(carrito));
+		sessionStorage.setItem("carrito", JSON.stringify(carrito));
 	}
 
 	// 🔹 Cargar productos y carrito al iniciar
