@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			setTimeout(() => {
 				console.log("Redirigiendo a:", window.location.href);
-				window.location.href = "../pages/registro-pregunta.html";
+				window.location.href = "/pages/registro-pregunta.html";
 			}, 2000);
 		});
 	}
