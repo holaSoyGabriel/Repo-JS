@@ -628,6 +628,41 @@ body {
 	text-overflow: ellipsis; /* Agrega "..." si el texto es demasiado largo */
 }
 
+.paginacion {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+	margin-top: 20px;
+}
+
+.paginacion button {
+	background: #5b00a3;
+	color: white;
+	border: none;
+	padding: 10px 15px;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	font-size: 1.2rem;
+}
+
+.paginacion button:disabled {
+	background: #444;
+	cursor: not-allowed;
+}
+
+.paginacion button:hover:not(:disabled) {
+	background: #8800ff;
+	transform: scale(1.1);
+}
+
+#pagina-actual {
+	font-size: 1.2rem;
+	color: #cfcfe0;
+	font-weight: bold;
+}
+
 /* ====== ESTILOS PARA EL CARRITO ====== */
 .carrito-container {
 	width: 100%;
@@ -664,12 +699,12 @@ body {
 	gap: 15px;
 	transition: all 0.3s ease-in-out;
 	z-index: 1000;
-	animation: slideIn 0.5s ease-in-out;
+	animation: slideIn 0.5s ease-in-out forwards; /* 🔹 La animación solo ocurre una vez */
 	max-height: 500px; /* 🔹 Limita la altura del carrito */
 	overflow-y: auto; /* 🔹 Siempre permite scroll */
 }
 
-.carrito-flotante::-webkit-scrollbar {
+/* .carrito-flotante::-webkit-scrollbar {
 	width: 8px;
 }
 
@@ -680,7 +715,7 @@ body {
 
 .carrito-flotante::-webkit-scrollbar-track {
 	background: #161628;
-}
+} */
 
 /* 🔹 Contenedor de productos dentro del carrito */
 .carrito-lista {
@@ -850,12 +885,12 @@ body {
 	}
 
 	.productos .menu-lateral {
-		max-width: 100%; /* Ocupa todo el ancho disponible */
-		height: auto; /* Ajusta la altura según el contenido */
+		max-width: 100%;
+		height: auto;
 	}
 
 	.productos .productos-lista {
-		grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+		grid-template-columns: repeat(2, 1fr);
 		justify-content: center;
 	}
 
@@ -865,49 +900,82 @@ body {
 
 	.carrito-flotante {
 		width: 80%;
-		max-height: 75vh; /* Ajusta la altura para pantallas medianas */
+		max-height: 75vh;
 		overflow-y: auto;
+	}
+	.pantalla {
+		display: flex;
+		justify-content: center;
+	}
+	.bienvenida-container h1 {
+		font-size: 4rem;
+	}
+
+	.bienvenida-container p {
+		font-size: 1.3rem;
+		max-width: 600px;
+	}
+
+	.bienvenida-container .btn-entrar {
+		font-size: 1.6rem;
+		padding: 12px 25px;
 	}
 }
 
 /* 🔹 Para pantallas pequeñas (Móviles) */
 @media (max-width: 768px) {
 	.productos-header h1 {
-		font-size: 4rem; /* Reduce el tamaño del título */
+		font-size: 4rem;
 	}
 
 	.productos-header .buscador {
-		width: 80%; /* Aumenta el ancho del buscador */
+		width: 80%;
 	}
 
 	#saldo-container {
-		font-size: 1.2rem; /* Reduce el tamaño del texto */
+		font-size: 1.2rem;
 		padding: 8px 15px;
 	}
 
 	.productos .productos-lista {
-		grid-template-columns: 1fr; /* Cambia a una sola columna */
+		grid-template-columns: 1fr;
 		justify-content: center;
 	}
 
 	.productos .producto-card {
-		max-width: 100%; /* Que ocupen todo el ancho */
+		max-width: 100%;
 	}
 
 	.productos .zona-productos {
 		max-width: 95%;
-		margin: 0 auto; /* Centra los productos */
+		margin: 0 auto;
 	}
 
 	.carrito-flotante {
 		width: 90%;
-		max-height: 70vh; /* Se adapta mejor en móviles */
+		max-height: 70vh;
 		padding: 15px;
 	}
 
 	#ver-carrito {
 		font-size: 1rem;
 		padding: 10px 15px;
+	}
+
+	
+
+	.bienvenida-container h1 {
+		font-size: 3rem;
+	}
+
+	.bienvenida-container p {
+		font-size: 1.2rem;
+		max-width: 90%;
+	}
+
+	.bienvenida-container .btn-entrar {
+		font-size: 1.4rem;
+		padding: 10px 20px;
 	}
 }
 
@@ -921,9 +989,9 @@ body {
 		gap: 15px;
 	}
 
-	carrito-flotante {
+	.carrito-flotante {
 		width: 95%;
-		max-height: 65vh; /* Más compacto para pantallas pequeñas */
+		max-height: 65vh;
 	}
 
 	.producto-card {
@@ -942,5 +1010,24 @@ body {
 	.producto-card .btn-neon {
 		font-size: 1rem;
 		padding: 8px;
+	}
+
+	.pantalla {
+		display: flex;
+		justify-content: center;
+	}
+
+	.bienvenida-container h1 {
+		font-size: 2.5rem;
+	}
+
+	.bienvenida-container p {
+		font-size: 1rem;
+		max-width: 95%;
+	}
+
+	.bienvenida-container .btn-entrar {
+		font-size: 1.2rem;
+		padding: 8px 18px;
 	}
 }

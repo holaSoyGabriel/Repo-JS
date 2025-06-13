@@ -55,24 +55,32 @@
                     <div id="productos-lista" class="productos-lista">
                         <p>Cargando productos...</p>
                     </div>
+                    <div class="paginacion">
+                    <button id="btn-anterior" disabled>← Anterior</button>
+                    <span id="pagina-actual">Página 1</span>
+                    <button id="btn-siguiente">Siguiente →</button>
+                </div>
                 </section>
 
+                
+
+            </div>
+            <!-- Botón flotante para ver el carrito -->
+            <button id="ver-carrito" class="btn-neon">Ver carrito</button>
+
+            <!-- Contenedor flotante del carrito -->
+            <div id="carrito-flotante" class="carrito-flotante oculto">
+                <h2>Carrito de compras</h2>
+                <div id="carrito-lista"></div>
+                <p>Total: <span id="carrito-total">$0.00</span></p>
+                <button id="volver" class="btn-neon">Volver</button>
+                <button id="vaciar-carrito" class="btn-neon">Vaciar
+                    carrito</button>
+                <button id="realizar-compra" class="btn-neon">Realizar
+                    compra</button>
             </div>
         </main>
 
-        <!-- Botón flotante para ver el carrito -->
-        <button id="ver-carrito" class="btn-neon">Ver carrito</button>
-
-        <!-- Contenedor flotante del carrito -->
-        <div id="carrito-flotante" class="carrito-flotante oculto">
-            <h2>Carrito de compras</h2>
-            <div id="carrito-lista"></div>
-            <p>Total: <span id="carrito-total">$0.00</span></p>
-            <button id="volver" class="btn-neon">Volver</button>
-            <button id="vaciar-carrito" class="btn-neon">Vaciar carrito</button>
-            <button id="realizar-compra" class="btn-neon">Realizar
-                compra</button>
-        </div>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 

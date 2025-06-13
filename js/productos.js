@@ -3,6 +3,9 @@
 document.addEventListener("DOMContentLoaded", async () => {
 	// 🔹 Elementos del DOM
 	const productosLista = document.getElementById("productos-lista");
+	const btnAnterior = document.getElementById("btn-anterior");
+	const btnSiguiente = document.getElementById("btn-siguiente");
+	const paginaActualElemento = document.getElementById("pagina-actual");
 	const carritoLista = document.getElementById("carrito-lista");
 	const carritoTotal = document.getElementById("carrito-total");
 	const btnVaciarCarrito = document.getElementById("vaciar-carrito");
@@ -17,6 +20,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 	// 🔹 Variables globales
 	let productos = [];
+	const productosPorPagina = 6; // ✅ Definir aquí para que todas las funciones lo reconozcan
+	let paginaActual = 1;
+	let categoriaSeleccionada = "Todos";
+	let precioSeleccionado = "todos";
 	let carrito = JSON.parse(sessionStorage.getItem("carrito")) || [];
 	let saldoUsuario = parseFloat(sessionStorage.getItem("saldo"));
 
@@ -25,9 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	// ==========================================
 
 	function actualizarSaldo() {
-		saldoUsuarioElemento.innerText = `$${saldoUsuario.toFixed(
-			2
-		)}`;
+		saldoUsuarioElemento.innerText = `$${saldoUsuario.toFixed(2)}`;
 	}
 
 	if (isNaN(saldoUsuario)) {
@@ -40,7 +45,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 	// 🔹 Mostrar alerta de simulador al ingresar a productos con SweetAlert
 	Swal.fire({
 		title: "Bienvenido al simulador de e-commerce",
-		text: `Nada de lo que veas aquí es real. Se te asignará un saldo falso para que puedas "comprar" los productos.\n\nTu saldo es: $${saldoUsuario.toFixed(2)}`,
+		text: `Nada de lo que veas aquí es real. Se te asignará un saldo falso para que puedas "comprar" los productos.\n\nTu saldo es: $${saldoUsuario.toFixed(
+			2
+		)}`,
 		icon: "info",
 		confirmButtonText: "Entendido",
 		background: "#161628",
@@ -101,52 +108,131 @@ document.addEventListener("DOMContentLoaded", async () => {
 	// ==========================================
 	// 🔥 FILTRAR PRODUCTOS POR CATEGORÍA, PRECIO Y BÚSQUEDA
 	// ==========================================
+	// 🔥 Agregar evento de búsqueda
+
+	buscador.addEventListener("input", filtrarProductos);
+
 	function filtrarProductos() {
-		let categoriaSeleccionada =
+		paginaActual = 1; // 🔹 Reiniciar a la primera página cuando se filtra
+		categoriaSeleccionada =
 			document.querySelector(".categoria-btn.active")?.dataset.categoria ||
 			"Todos";
-		let precioSeleccionado = filtroPrecio.value;
-		let textoBusqueda = buscador.value.toLowerCase();
+		precioSeleccionado = filtroPrecio.value;
+		const terminoBusqueda = buscador.value.toLowerCase().trim();
 
-		let productosFiltrados = productos;
+		// 🔥 Filtrar categoría, precio y nombre del producto
+		const productosFiltrados = productos.filter((producto) => {
+			const coincideCategoria =
+				categoriaSeleccionada === "Todos" ||
+				producto.categoria === categoriaSeleccionada;
+			const coincidePrecio =
+				precioSeleccionado === "todos" ||
+				(precioSeleccionado === "bajo" && producto.precio < 50) ||
+				(precioSeleccionado === "medio" &&
+					producto.precio >= 50 &&
+					producto.precio <= 100) ||
+				(precioSeleccionado === "alto" && producto.precio > 100);
+			const coincideNombre = producto.nombre
+				.toLowerCase()
+				.includes(terminoBusqueda);
 
-		if (categoriaSeleccionada !== "Todos") {
-			productosFiltrados = productosFiltrados.filter(
-				(producto) => producto.categoria === categoriaSeleccionada
-			);
-		}
+			return coincideCategoria && coincidePrecio && coincideNombre;
+		});
 
-		if (precioSeleccionado !== "todos") {
-			productosFiltrados = productosFiltrados.filter((producto) => {
-				if (precioSeleccionado === "bajo") return producto.precio < 50;
-				if (precioSeleccionado === "medio")
-					return producto.precio >= 50 && producto.precio <= 100;
-				if (precioSeleccionado === "alto") return producto.precio > 100;
-			});
-		}
-
-		if (textoBusqueda) {
-			productosFiltrados = productosFiltrados.filter(
-				(producto) =>
-					producto.nombre.toLowerCase().includes(textoBusqueda) ||
-					producto.descripcion.toLowerCase().includes(textoBusqueda)
-			);
-		}
-
-		mostrarProductos(productosFiltrados);
+		mostrarProductosPaginados(productosFiltrados);
 	}
 
+	// 🔹 Evento para los botones de categoría
 	botonesCategoria.forEach((boton) => {
 		boton.addEventListener("click", () => {
 			botonesCategoria.forEach((btn) => btn.classList.remove("active"));
 			boton.classList.add("active");
-			filtrarProductos();
+
+			filtrarProductos(); // 🔹 Se actualiza la lista de productos en la vista
 		});
 	});
 
 	filtroPrecio.addEventListener("change", filtrarProductos);
 	buscador.addEventListener("input", filtrarProductos);
 
+	function mostrarProductosPaginados(productosFiltrados = productos) {
+		productosLista.innerHTML = "";
+
+		const inicio = (paginaActual - 1) * productosPorPagina;
+		const fin = inicio + productosPorPagina;
+		const productosPagina = productosFiltrados.slice(inicio, fin);
+
+		if (productosPagina.length === 0) {
+			productosLista.innerHTML = "<p>No hay productos disponibles.</p>";
+			return;
+		}
+
+		productosPagina.forEach((producto, index) => {
+			const divProducto = document.createElement("div");
+			divProducto.classList.add("producto-card");
+			divProducto.style.animationDelay = `${index * 0.1}s`;
+			divProducto.innerHTML = `
+            <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-img">
+            <h3>${producto.nombre}</h3>
+            <p>${producto.descripcion}</p>
+            <span>Precio: $${producto.precio}</span>
+            <button class="btn-neon comprar-btn" data-id="${producto.id}">Comprar</button>
+        `;
+			productosLista.appendChild(divProducto);
+		});
+
+		// ✅ Ahora `paginaActualElemento` está definido globalmente
+		btnAnterior.disabled = paginaActual === 1;
+		btnSiguiente.disabled =
+			paginaActual * productosPorPagina >= productosFiltrados.length;
+		paginaActualElemento.innerText = `Página ${paginaActual} de ${Math.ceil(
+			productosFiltrados.length / productosPorPagina
+		)}`;
+	}
+
+	btnAnterior.addEventListener("click", () => {
+		let productosFiltrados = productos.filter((producto) => {
+			return (
+				(categoriaSeleccionada === "Todos" ||
+					producto.categoria === categoriaSeleccionada) &&
+				(precioSeleccionado === "todos" ||
+					(precioSeleccionado === "bajo" && producto.precio < 50) ||
+					(precioSeleccionado === "medio" &&
+						producto.precio >= 50 &&
+						producto.precio <= 100) ||
+					(precioSeleccionado === "alto" && producto.precio > 100))
+			);
+		});
+
+		if (paginaActual > 1) {
+			paginaActual--;
+			mostrarProductosPaginados(productosFiltrados);
+		}
+	});
+
+	btnSiguiente.addEventListener("click", () => {
+		let productosFiltrados = productos.filter((producto) => {
+			return (
+				(categoriaSeleccionada === "Todos" ||
+					producto.categoria === categoriaSeleccionada) &&
+				(precioSeleccionado === "todos" ||
+					(precioSeleccionado === "bajo" && producto.precio < 50) ||
+					(precioSeleccionado === "medio" &&
+						producto.precio >= 50 &&
+						producto.precio <= 100) ||
+					(precioSeleccionado === "alto" && producto.precio > 100))
+			);
+		});
+
+		const totalPaginas = Math.ceil(
+			productosFiltrados.length / productosPorPagina
+		);
+
+		if (paginaActual < totalPaginas) {
+			paginaActual++;
+			mostrarProductosPaginados(productosFiltrados);
+		}
+	});
 	// ==========================================
 	// 🔥 CARRITO DE COMPRAS
 	// ==========================================
@@ -165,31 +251,28 @@ document.addEventListener("DOMContentLoaded", async () => {
 		const productoSeleccionado = productos.find(
 			(producto) => producto.id == id
 		);
+
 		const productoEnCarrito = carrito.find((item) => item.id == id);
 
-		if (productoSeleccionado) {
-			if (productoEnCarrito) {
-				productoEnCarrito.cantidad++;
-			} else {
-				carrito.push({ ...productoSeleccionado, cantidad: 1 });
-			}
-
-			guardarCarrito();
-			actualizarCarrito();
-
-			// 🔹 Notificación visual con SweetAlert
-			Swal.fire({
-				title: "Producto agregado",
-				text: `${productoSeleccionado.nombre} ha sido añadido al carrito.`,
-				icon: "success",
-				timer: 1500,
-				showConfirmButton: false,
-				background: "#161628",
-				color: "#ffffff",
-			});
+		if (productoEnCarrito) {
+			productoEnCarrito.cantidad++;
+		} else {
+			carrito.push({ ...productoSeleccionado, cantidad: 1 });
 		}
-	}
 
+		guardarCarrito();
+		actualizarCarrito();
+
+		Swal.fire({
+			title: "Producto agregado",
+			text: `${productoSeleccionado.nombre} ha sido añadido al carrito.`,
+			icon: "success",
+			timer: 1500,
+			showConfirmButton: false,
+			background: "#161628",
+			color: "#ffffff",
+		});
+	}
 	function actualizarCarrito() {
 		carritoLista.innerHTML = "";
 		let total = 0;
@@ -243,9 +326,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 		} else {
 			Swal.fire({
 				title: "Confirmar compra",
-				text: `✅ Total: $${totalCompra}\nSaldo restante: $${
+				text: `✅ Total: $${totalCompra}\nSaldo restante: $${(
 					saldoUsuario - totalCompra
-				}`,
+				).toFixed(2)}`,
 				icon: "warning",
 				showCancelButton: true,
 				confirmButtonText: "Sí, comprar",
@@ -263,7 +346,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 					Swal.fire({
 						title: "Compra realizada",
-						text: `🎉 Su compra ha sido realizada exitosamente.\n\nSu saldo restante es $${saldoUsuario}`,
+						text: `🎉 Su compra ha sido realizada exitosamente.\n\nSu saldo restante es $${saldoUsuario.toFixed(
+							2
+						)}`,
 						icon: "success",
 						confirmButtonText: "Aceptar",
 						background: "#161628",
