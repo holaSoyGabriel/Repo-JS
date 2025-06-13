@@ -21,14 +21,17 @@ body {
 	min-height: 100vh;
 	padding: 40px 20px;
 	text-align: center;
+	overflow-x: hidden !important;
 }
 
 /* Contenedor base */
 .contenedor {
-	width: 90%;
+	background: rgba(22, 22, 40, 0.9);
+	padding: 40px;
 	border-radius: 15px;
-	background: #161628;
-	animation: fadeIn 1s ease-out forwards;
+	box-shadow: 0 0 20px rgba(91, 0, 163, 0.7);
+	max-width: 600px;
+	width: 90%;
 }
 
 /* Animación de entrada */
@@ -41,16 +44,13 @@ body {
 		opacity: 1;
 		transform: translateY(0);
 	}
-}
-
-/* Títulos con efecto neón */
+} /* Títulos con efecto neón */
 .neon-text {
 	font-size: 4rem;
 	color: #8800ff;
 	text-shadow: 0 0 20px rgba(136, 0, 255, 1), 0 0 30px rgba(136, 0, 255, 0.8);
 	animation: glow 1.5s infinite alternate;
 }
-
 /* Animación de brillo */
 @keyframes glow {
 	from {
@@ -59,35 +59,42 @@ body {
 	to {
 		text-shadow: 0 0 25px rgba(136, 0, 255, 1);
 	}
-}
-
-/* Texto con mejor contraste */
-
-/* ====== ESTILOS EXCLUSIVOS PARA BIENVENIDA ====== */
+} /* Texto con mejor contraste */ /* ====== ESTILOS EXCLUSIVOS PARA BIENVENIDA ====== */
 .pantalla {
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100vh;
+	padding: 20px;
+	box-sizing: border-box;
 }
-
+.bienvenida {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	background: #0d0d14;
+	font-family: "VT323", monospace;
+	color: #ffffff;
+	text-align: center;
+}
 .bienvenida .contenedor {
 	max-width: 900px;
 	padding: 60px;
 	box-shadow: 0 0 30px rgba(136, 0, 255, 0.7);
 }
-
 .bienvenida .contenedor h1 {
 	font-size: 100px;
 	margin: 20px;
 }
-
 .bienvenida .contenedor p {
 	font-size: 2rem;
 	color: #d1d1e0;
 	font-weight: 600;
 	margin: 10px;
-}
-
-/* Botón estilo arcade con luminiscencia neón */
+} /* Botón estilo arcade con luminiscencia neón */
 .bienvenida #btnComenzar {
 	margin-top: 30px;
 	padding: 8px 18px;
@@ -103,27 +110,22 @@ body {
 	font-weight: bold;
 	font-family: "Press Start 2P", cursive;
 	text-shadow: 0 0 10px rgba(136, 0, 255, 0.8), 0 0 20px rgba(136, 0, 255, 0.6);
-}
-
-/* Efecto hover */
+} /* Efecto hover */
 .bienvenida #btnComenzar:hover {
 	background: #1d1d3b;
 	box-shadow: inset -3px -3px 0px #110022, inset 3px 3px 0px #8800ff;
 	transform: scale(1.05);
 	text-shadow: 0 0 15px rgba(136, 0, 255, 1), 0 0 25px rgba(136, 0, 255, 0.8);
-}
-
-/* Efecto al presionar */
+} /* Efecto al presionar */
 .bienvenida #btnComenzar:active {
 	background: #110022;
 	box-shadow: inset -2px -2px 0px #000, inset 2px 2px 0px #5b00a3;
 	transform: scale(0.97);
 	text-shadow: 0 0 8px rgba(136, 0, 255, 0.6), 0 0 12px rgba(136, 0, 255, 0.4);
 }
-
 /* ====== ESTILOS EXCLUSIVOS PARA REGISTRO-PREGUNTA ====== */
 .registro-pregunta .contenedor {
-	max-width: 600px;
+	max-width: 500px;
 	padding: 40px;
 	box-shadow: 0 0 20px rgba(136, 0, 255, 0.6);
 }
@@ -907,18 +909,22 @@ body {
 		display: flex;
 		justify-content: center;
 	}
-	.bienvenida-container h1 {
-		font-size: 4rem;
+	.bienvenida .contenedor {
+		max-width: 700px;
+		padding: 50px;
 	}
 
-	.bienvenida-container p {
-		font-size: 1.3rem;
-		max-width: 600px;
+	.bienvenida .contenedor h1 {
+		font-size: 80px;
 	}
 
-	.bienvenida-container .btn-entrar {
-		font-size: 1.6rem;
-		padding: 12px 25px;
+	.bienvenida .contenedor p {
+		font-size: 1.8rem;
+	}
+
+	.bienvenida #btnComenzar {
+		font-size: 1.2rem;
+		padding: 10px 20px;
 	}
 }
 
@@ -962,21 +968,23 @@ body {
 		padding: 10px 15px;
 	}
 
-	
+   .bienvenida .contenedor {
+        max-width: 90%;
+        padding: 30px;
+    }
 
-	.bienvenida-container h1 {
-		font-size: 3rem;
-	}
+    .bienvenida .contenedor h1 {
+        font-size: 3.5rem;
+    }
 
-	.bienvenida-container p {
-		font-size: 1.2rem;
-		max-width: 90%;
-	}
+    .bienvenida .contenedor p {
+        font-size: 1.4rem;
+    }
 
-	.bienvenida-container .btn-entrar {
-		font-size: 1.4rem;
-		padding: 10px 20px;
-	}
+    .bienvenida #btnComenzar {
+        font-size: 1.4rem;
+        padding: 10px 20px;
+    }
 }
 
 /* 🔹 Para pantallas extra pequeñas (Teléfonos compactos) */
@@ -985,12 +993,18 @@ body {
 		font-size: 3rem;
 	}
 
+	.productos .menu-lateral {
+		max-width: 90%;
+		height: auto;
+		justify-self: center;
+	}
+
 	.productos .productos-lista {
 		gap: 15px;
 	}
 
 	.carrito-flotante {
-		width: 95%;
+		width: 80%;
 		max-height: 65vh;
 	}
 
@@ -1012,22 +1026,39 @@ body {
 		padding: 8px;
 	}
 
+	.registro-pregunta h2 {
+		font-size: 65px;
+	}
+
+	.registro h2 {
+		font-size: 43px;
+		text-align: center;
+	}
+
+	.btn-neon {
+		font-size: 11px;
+	}
+
 	.pantalla {
 		display: flex;
 		justify-content: center;
 	}
 
-	.bienvenida-container h1 {
-		font-size: 2.5rem;
-	}
+.bienvenida .contenedor {
+        max-width: 100%;
+        padding: 15px;
+    }
 
-	.bienvenida-container p {
-		font-size: 1rem;
-		max-width: 95%;
-	}
+    .bienvenida .contenedor h1 {
+        font-size: 2.7rem;
+    }
 
-	.bienvenida-container .btn-entrar {
-		font-size: 1.2rem;
-		padding: 8px 18px;
-	}
+    .bienvenida .contenedor p {
+        font-size: 1.1rem;
+    }
+
+    .bienvenida #btnComenzar {
+        font-size: 12px;
+        padding: 6px 15px;
+    }
 }
