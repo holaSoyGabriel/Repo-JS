@@ -48,6 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
 			spinnerContainer.classList.add("active");
 
 			setTimeout(() => {
+				/* ok, esto lo tuve que hacer improvisado, porque cuando abria github pages,
+			      este era el primer link que me aparecia: https://holasoygabriel.github.io/Repo-JS/,
+				 aparece la pestana de bienvenida, pero al darle click en comenzar
+				  me mandaba a este enlace: https://holasoygabriel.github.io/pages/registro-pregunta.html,
+				  entonces tuve que forzar a la pestaña de que añadiera Repo-js en la url de registro-pregunta.html
+				  en github pages, ah y tambien, creo que lo adapte a cualquier entorno o servidor en el que este.
+				  No se si ,lo tomen como error*/
 				const pathArray = window.location.pathname.split("/");
 				const repoName = pathArray.includes("Repo-JS") ? "/Repo-JS" : "";
 				window.location.href = `${window.location.origin}${repoName}/pages/registro-pregunta.html`;
