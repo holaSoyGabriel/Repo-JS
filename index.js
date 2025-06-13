@@ -48,10 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			spinnerContainer.classList.add("active");
 
 			setTimeout(() => {
-				/* const repoName = window.location.pathname.includes("/Repo-JS")
-					? "/Repo-JS"
-					: ""; */
-				window.location.href = `${window.location.origin}/pages/registro-pregunta.html`;
+				const pathArray = window.location.pathname.split("/");
+				const repoName = pathArray.includes("Repo-JS") ? "/Repo-JS" : "";
+				window.location.href = `${window.location.origin}${repoName}/pages/registro-pregunta.html`;
 			}, 2000);
 		});
 	}
