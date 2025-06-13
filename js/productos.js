@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 				throw new Error("El JSON no contiene productos.");
 
 			productos = datos.productos;
-			mostrarProductos(productos);
+			mostrarProductosPaginados(productos); // ✅ Aplicamos paginación al cargar el JSON
 		} catch (error) {
 			productosLista.innerHTML = `<p style="color: red;">Error al cargar productos. Verifica el JSON.</p>`;
 		}
@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	// ==========================================
 	// 🔥 MOSTRAR PRODUCTOS EN LA PÁGINA
 	// ==========================================
+
 	function mostrarProductos(lista) {
 		productosLista.innerHTML = "";
 		if (!lista || lista.length === 0) {
@@ -155,7 +156,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 	filtroPrecio.addEventListener("change", filtrarProductos);
 	buscador.addEventListener("input", filtrarProductos);
 
-	function mostrarProductosPaginados(productosFiltrados = productos) {
+	document.addEventListener("DOMContentLoaded", async () => {
+		paginaActual = 1;
+		await cargarProductos(); // ✅ Primero cargamos los productos del JSON
+		mostrarProductos(productos);
+		mostrarProductosPaginados(productos); // ✅ Luego aplicamos paginación correctamente
+	});
+	function mostrarProductosPaginados(productosFiltrados) {
 		productosLista.innerHTML = "";
 
 		const inicio = (paginaActual - 1) * productosPorPagina;
@@ -167,10 +174,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 			return;
 		}
 
-		productosPagina.forEach((producto, index) => {
+		productosPagina.forEach((producto) => {
 			const divProducto = document.createElement("div");
 			divProducto.classList.add("producto-card");
-			divProducto.style.animationDelay = `${index * 0.1}s`;
 			divProducto.innerHTML = `
             <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-img">
             <h3>${producto.nombre}</h3>
@@ -181,56 +187,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 			productosLista.appendChild(divProducto);
 		});
 
-		// ✅ Ahora `paginaActualElemento` está definido globalmente
 		btnAnterior.disabled = paginaActual === 1;
 		btnSiguiente.disabled =
 			paginaActual * productosPorPagina >= productosFiltrados.length;
 		paginaActualElemento.innerText = `Página ${paginaActual} de ${Math.ceil(
 			productosFiltrados.length / productosPorPagina
 		)}`;
-	}
 
-	btnAnterior.addEventListener("click", () => {
-		let productosFiltrados = productos.filter((producto) => {
-			return (
-				(categoriaSeleccionada === "Todos" ||
-					producto.categoria === categoriaSeleccionada) &&
-				(precioSeleccionado === "todos" ||
-					(precioSeleccionado === "bajo" && producto.precio < 50) ||
-					(precioSeleccionado === "medio" &&
-						producto.precio >= 50 &&
-						producto.precio <= 100) ||
-					(precioSeleccionado === "alto" && producto.precio > 100))
-			);
+		// ✅ Reasignar eventos "Comprar" después de renderizar los productos
+		document.querySelectorAll(".comprar-btn").forEach((boton) => {
+			boton.addEventListener("click", () => agregarAlCarrito(boton.dataset.id));
 		});
-
+	}
+	btnAnterior.addEventListener("click", () => {
 		if (paginaActual > 1) {
 			paginaActual--;
-			mostrarProductosPaginados(productosFiltrados);
+			mostrarProductosPaginados(productos); // ✅ Ahora funciona bien con la lista filtrada
 		}
 	});
 
 	btnSiguiente.addEventListener("click", () => {
-		let productosFiltrados = productos.filter((producto) => {
-			return (
-				(categoriaSeleccionada === "Todos" ||
-					producto.categoria === categoriaSeleccionada) &&
-				(precioSeleccionado === "todos" ||
-					(precioSeleccionado === "bajo" && producto.precio < 50) ||
-					(precioSeleccionado === "medio" &&
-						producto.precio >= 50 &&
-						producto.precio <= 100) ||
-					(precioSeleccionado === "alto" && producto.precio > 100))
-			);
-		});
-
-		const totalPaginas = Math.ceil(
-			productosFiltrados.length / productosPorPagina
-		);
+		const totalPaginas = Math.ceil(productos.length / productosPorPagina);
 
 		if (paginaActual < totalPaginas) {
 			paginaActual++;
-			mostrarProductosPaginados(productosFiltrados);
+			mostrarProductosPaginados(productos); // ✅ Siempre aplica paginación correctamente
 		}
 	});
 	// ==========================================
