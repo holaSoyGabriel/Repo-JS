@@ -40,7 +40,7 @@ body {
 }
 
 .neon-text {
-	font-size: 6rem;
+	font-size: 4rem;
 	color: #bb00ff;
 	text-shadow: 0 0 30px rgba(187, 0, 255, 1), 0 0 50px rgba(187, 0, 255, 0.8);
 	animation: glowEffect 1.5s infinite alternate;
