@@ -1,30 +1,25 @@
 /** @format */
 
 document.addEventListener("DOMContentLoaded", () => {
-	// 🔹 Elementos del DOM - Registro
 	const formRegistro = document.getElementById("form-registro");
 	const btnRegistro = document.getElementById("btn-registrarse");
 	const checkboxConsentimiento = document.getElementById(
 		"registro-consentimiento"
 	);
+	const spinnerContainer = document.querySelector(".spinner-container");
 	const inputUsuario = document.getElementById("registro-usuario");
 	const mensajeErrorUsuario = document.getElementById("error-usuario");
 	const inputEmail = document.getElementById("registro-email");
-
-	// 🔹 Elementos del DOM - Login
+	const inputTarjeta = document.getElementById("registro-tarjeta");
 	const formLogin = document.getElementById("form-login");
 	const btnIngresar = document.getElementById("btn-ingresar");
 	const inputLoginUsuario = document.getElementById("login-usuario");
 	const inputLoginEmail = document.getElementById("login-email");
 	const inputLoginPassword = document.getElementById("login-password");
-
-	// 🔹 Expresiones regulares para validación
 	const regexUsuario = /^[a-z0-9._-]{5,15}$/;
 	const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-	// ==========================================
-	// 🔥 VALIDACIÓN DEL NOMBRE DE USUARIO
-	// ==========================================
+	document.addEventListener("DOMContentLoaded", () => {});
 	if (inputUsuario) {
 		inputUsuario.addEventListener("input", () => {
 			const valor = inputUsuario.value;
@@ -40,27 +35,28 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
-	// ==========================================
-	// 🔥 HABILITAR BOTÓN DE REGISTRO
-	// ==========================================
+	if (inputTarjeta) {
+		inputTarjeta.addEventListener("input", () => {
+			let valor = inputTarjeta.value.replace(/\D/g, "");
+
+			valor = valor.slice(0, 16);
+
+			const formateado = valor.replace(/(.{4})/g, "$1 ").trim();
+
+			inputTarjeta.value = formateado;
+		});
+	}
+
 	if (checkboxConsentimiento) {
 		checkboxConsentimiento.addEventListener("change", () => {
 			btnRegistro.disabled = !checkboxConsentimiento.checked;
 		});
-
-		btnRegistro.addEventListener("click", () => {
-			formRegistro.dispatchEvent(new Event("submit"));
-		});
 	}
 
-	// ==========================================
-	// 🔥 VALIDACIÓN Y REGISTRO DE USUARIO
-	// ==========================================
 	if (formRegistro) {
 		formRegistro.addEventListener("submit", (event) => {
 			event.preventDefault();
-
-			// Obtener valores del formulario
+			let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 			const nombre = document.getElementById("registro-nombre").value.trim();
 			const usuario = inputUsuario.value.trim();
 			const email = inputEmail.value.trim();
@@ -73,8 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			const confirmarContrasena = document
 				.getElementById("registro-confirmar-password")
 				.value.trim();
+			const yaExiste = usuarios.some(
+				(u) => u.usuario === usuario || u.email === email
+			);
 
-			// Validaciones
 			if (
 				!nombre ||
 				!usuario ||
@@ -136,7 +134,26 @@ document.addEventListener("DOMContentLoaded", () => {
 				return;
 			}
 
-			// Guardar usuario en LocalStorage
+			if (inputTarjeta.value.replace(/\s/g, "").length !== 16) {
+				Swal.fire({
+					icon: "error",
+					title: "Número de tarjeta inválido",
+					text: "La tarjeta debe tener exactamente 16 dígitos.",
+					confirmButtonColor: "#8800ff",
+				});
+				return;
+			}
+
+			if (yaExiste) {
+				Swal.fire({
+					icon: "error",
+					title: "Ya registrado",
+					text: "Ese nombre de usuario o correo ya está en uso.",
+					confirmButtonColor: "#8800ff",
+				});
+				return;
+			}
+
 			const nuevoUsuario = {
 				nombre,
 				usuario,
@@ -146,26 +163,31 @@ document.addEventListener("DOMContentLoaded", () => {
 				tarjeta,
 				contrasena,
 			};
-			let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
 			usuarios.push(nuevoUsuario);
 			localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
 			Swal.fire({
 				icon: "success",
 				title: "Registro exitoso",
 				text: "Ahora puedes iniciar sesión.",
 				confirmButtonColor: "#8800ff",
 			}).then(() => {
-				window.location.assign("login.html");
+				if (spinnerContainer) {
+					console.log("🚀 Activando spinner...");
+
+					spinnerContainer.classList.add("active");
+				} else {
+					console.log("❌ Spinner no encontrado en el DOM");
+				}
+
+				setTimeout(() => {
+					window.location.assign("login.html");
+				}, 2000);
 			});
 		});
 	}
 
-	// ==========================================
-	// 🔥 VALIDACIÓN Y AUTENTICACIÓN DE USUARIO (LOGIN)
-	// ==========================================
 	if (formLogin) {
-		// Habilitar el botón cuando los campos estén llenos
 		[inputLoginUsuario, inputLoginEmail, inputLoginPassword].forEach(
 			(campo) => {
 				campo.addEventListener("input", () => {
@@ -184,16 +206,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		formLogin.addEventListener("submit", (event) => {
 			event.preventDefault();
-
-			// Obtener valores del formulario
 			const usuario = inputLoginUsuario.value.trim();
 			const email = inputLoginEmail.value.trim();
 			const contrasena = inputLoginPassword.value.trim();
-
-			// Obtener usuarios guardados en LocalStorage
 			const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-			// Buscar usuario en la lista
 			const usuarioEncontrado = usuarios.find(
 				(user) =>
 					user.usuario === usuario &&
@@ -208,9 +224,8 @@ document.addEventListener("DOMContentLoaded", () => {
 					text: `Bienvenido, ${usuarioEncontrado.usuario}!`,
 					confirmButtonColor: "#8800ff",
 				}).then(() => {
-					// 🔥 Mostrar spinner antes de redirigir
-					const spinnerContainer = document.querySelector(".spinner-container");
 					if (spinnerContainer) {
+						console.log("🚀 Activando spinner antes de redirección...");
 						spinnerContainer.classList.add("active");
 					}
 
@@ -229,19 +244,16 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
-	// ==========================================
-	// 🔥 MOSTRAR/OCULTAR CONTRASEÑA CON BOXICONS
-	// ==========================================
 	document.querySelectorAll(".toggle-password").forEach((icon) => {
 		icon.addEventListener("click", () => {
 			const input = document.getElementById(icon.dataset.target);
 
 			if (input.type === "password") {
 				input.type = "text";
-				icon.classList.replace("bx-hide", "bx-show-alt"); // Cambia el icono
+				icon.classList.replace("bx-hide", "bx-show-alt");
 			} else {
 				input.type = "password";
-				icon.classList.replace("bx-show-alt", "bx-hide"); // Vuelve al icono original
+				icon.classList.replace("bx-show-alt", "bx-hide");
 			}
 		});
 	});

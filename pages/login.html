@@ -4,39 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arcadia - Iniciar Sesión</title>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
       rel="stylesheet">
-      <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css">
     <link
       href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet">
-    <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body class="login">
-    <section class="pantalla">
-      <div class="contenedor">
-        <h2 class="neon-text">Iniciar Sesión</h2>
-        <form id="form-login">
-          <input type="text" id="login-usuario" placeholder="Nombre de usuario"
-            required>
-          <input type="email" id="login-email" placeholder="Correo electrónico"
-            required>
-
-          <div class="password-container">
-            <input type="password" id="login-password" placeholder="Contraseña"
-              required>
-            <i class="bx bx-hide toggle-password"
-              data-target="login-password"></i>
-          </div>
-
-          <button type="submit" class="btn-neon" id="btn-ingresar"
-            disabled>Ingresar</button>
-        </form>
-        <a href="../pages/registro.html" class="btn-neon">Registrarse</a>
+    <main>
+      <div class="spinner-container">
+        <div class="loader"></div>
       </div>
-    </section>
+      <section class="pantalla">
+        <div class="contenedor">
+          <h2 class="neon-text">Iniciar Sesión</h2>
+          <form id="form-login">
+            <input type="text" id="login-usuario"
+              placeholder="Nombre de usuario"
+              required>
+            <input type="email" id="login-email"
+              placeholder="Correo electrónico"
+              required>
+
+            <div class="password-container">
+              <input type="password" id="login-password"
+                placeholder="Contraseña"
+                required>
+              <i class="bx bx-hide toggle-password"
+                data-target="login-password"></i>
+            </div>
+
+            <button type="submit" class="btn-neon" id="btn-ingresar"
+              disabled>Ingresar</button>
+          </form>
+          <a href="../pages/registro.html" class="btn-neon">Registrarse</a>
+        </div>
+
+      </section>
+    </main>
+
     <script src="../js/auth.js"></script>
   </body>
 </html>

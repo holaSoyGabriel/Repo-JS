@@ -11,61 +11,67 @@
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
       rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
-    <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Toastify -->
     <script type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </head>
   <body class="registro">
-    <section class="pantalla">
-      <div class="contenedor">
-        <h2 class="neon-text">Registrarse</h2>
-        <form id="form-registro">
-          <input type="text" id="registro-nombre" placeholder="Nombre completo"
-            required>
-          <input type="text" id="registro-apellidos"
-            placeholder="Apellidos completos" required>
-          <input type="text" id="registro-usuario"
-            placeholder="Nombre de usuario (minúsculas, números, . _ -)"
-            required>
-          <p id="error-usuario"></p> <!-- Mensaje de error dinámico -->
-          <input type="email" id="registro-email"
-            placeholder="Correo electrónico" required>
-          <input type="number" id="registro-edad" placeholder="Edad" required>
-          <input type="text" id="registro-dni" placeholder="DNI" required>
-          <input type="text" id="registro-tarjeta"
-            placeholder="Número de tarjeta" required>
-          <div class="password-container">
-            <input type="password" id="registro-password"
-              placeholder="Contraseña" required>
-            <i class="bx bx-hide toggle-password"
-              data-target="registro-password"></i>
-          </div>
+    <main>
+      <div class="spinner-container">
+        <div class="loader"></div>
 
-          <div class="password-container">
-            <input type="password" id="registro-confirmar-password"
-              placeholder="Confirmar contraseña" required>
-            <i class="bx bx-hide toggle-password"
-              data-target="registro-confirmar-password"></i>
-          </div>
-
-          <!-- Consentimiento sin efecto iluminado -->
-          <div class="consentimiento">
-            <input type="checkbox" id="registro-consentimiento">
-            <label for="registro-consentimiento">Estoy consciente de que esto es
-              un simulador de un e-commerce.</label>
-          </div>
-
-          <button type="submit" class="btn-neon" id="btn-registrarse"
-            disabled>Registrarse</button>
-        </form>
-        <a href="registro-pregunta.html" class="btn-neon">Volver</a>
       </div>
-    </section>
-    <script src="../js/index.js"></script>
+
+      <section class="pantalla">
+        <div class="contenedor">
+          <h2 class="neon-text">Registrarse</h2>
+          <form id="form-registro">
+            <input type="text" id="registro-nombre"
+              placeholder="Nombre completo"
+              required>
+            <input type="text" id="registro-apellidos"
+              placeholder="Apellidos completos" required>
+            <input type="text" id="registro-usuario"
+              placeholder="Nombre de usuario (minúsculas, números, . _ -)"
+              required>
+            <p id="error-usuario"></p>
+            <input type="email" id="registro-email"
+              placeholder="Correo electrónico" required>
+            <input type="number" id="registro-edad" placeholder="Edad" required>
+            <input type="text" id="registro-dni" placeholder="DNI" required>
+            <input type="text" id="registro-tarjeta"
+              placeholder="Número de tarjeta" required>
+            <div class="password-container">
+              <input type="password" id="registro-password"
+                placeholder="Contraseña" required>
+              <i class="bx bx-hide toggle-password"
+                data-target="registro-password"></i>
+            </div>
+
+            <div class="password-container">
+              <input type="password" id="registro-confirmar-password"
+                placeholder="Confirmar contraseña" required>
+              <i class="bx bx-hide toggle-password"
+                data-target="registro-confirmar-password"></i>
+            </div>
+
+            <div class="consentimiento">
+              <input type="checkbox" id="registro-consentimiento">
+              <label for="registro-consentimiento">Estoy consciente de que esto
+                es
+                un simulador de un e-commerce.</label>
+            </div>
+            <button type="submit" class="btn-neon" id="btn-registrarse"
+              disabled>Registrarse</button>
+          </form>
+          <a href="registro-pregunta.html" class="btn-neon">Volver</a>
+        </div>
+      </section>
+    </main>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
     <script src="../js/auth.js"></script>
 
   </body>
